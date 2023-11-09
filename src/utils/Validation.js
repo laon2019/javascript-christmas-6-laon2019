@@ -6,4 +6,8 @@ const isNumber = (number) => {
     return !isNaN(Number(number));
 }
 
-export { isNumber, isNumberInRange };
+const isNotEnglish = (text) => {
+    return !/^[a-zA-Z]+$/.test(text);
+};
+
+export { isNumber, isNumberInRange, isNotEnglish };
