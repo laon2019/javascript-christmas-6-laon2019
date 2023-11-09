@@ -19,7 +19,7 @@ class InputView {
         try {
             const menu = await Console.readLineAsync(GAME_MESSAGES.INPUT_MENU);
             console.log(menu)
-            // if(!isNotEnglish(input)) throw new Error(ERROR_MESSAGES.INVALID_ENGLISH);
+            if(!isNotEnglish(input)) throw new Error(ERROR_MESSAGES.INVALID_ENGLISH);
             return input
         } catch (error) {
             throw new Error(ERROR_MESSAGES.DEFAULT_ERROR);
