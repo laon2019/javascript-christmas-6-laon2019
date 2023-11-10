@@ -4,7 +4,7 @@ class App {
   async run() {
     try {
       const controller = new Controller();
-      await controller.inputDate();
+      await controller.start();
     } catch (error) {
       throw new Error(ERROR_MESSAGES.DEFAULT_ERROR);
     }
