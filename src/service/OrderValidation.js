@@ -1,4 +1,4 @@
-import Menu from "../repository/Menu";
+import Menu from "../model/Menu";
 
 class OrderValidation {
   validateOrder(menuItems) {
