@@ -7,7 +7,6 @@ class OrderService {
       const [menuName, quantity] = menuItem.split("-");
       parsedOrder.push([menuName, parseInt(quantity)]);
     });
-
     return parsedOrder;
   }
 }
