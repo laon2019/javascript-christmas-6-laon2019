@@ -1,5 +1,5 @@
 class OrderService {
-  static splitMenuInput(menuInput) {
+  splitMenuInput(menuInput) {
     const menuItems = menuInput.split(",");
     const parsedOrder = [];
 

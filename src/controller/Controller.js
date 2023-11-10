@@ -8,6 +8,13 @@ import OrderValidation from "../service/OrderValidation";
 class Controller {
   #date;
   #menu;
+  #orderService;
+  #orderValidation;
+
+  constructor() {
+    this.#orderService = new OrderService();
+    this.#orderValidation = new OrderValidation();
+  }
 
   async start() {
     try {
@@ -31,9 +38,8 @@ class Controller {
   async inputMenu() {
     try {
       this.#menu = await InputView.readMenu();
-      this.#menu = OrderService.splitMenuInput(this.#menu);
-      console.log(this.#menu)
-      OrderValidation.validateOrder(this.#menu);
+      this.#menu = this.#orderService.splitMenuInput(this.#menu);
+      this.#orderValidation.validateOrder(this.#menu);
       this.printEvent();
     } catch (error) {
       Console.print('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
