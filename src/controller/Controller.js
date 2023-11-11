@@ -23,6 +23,9 @@ class Controller {
     try {
       OutputView.printHello();
       await this.inputDate();
+      await this.inputMenu();
+      OutputView.printEvent(this.#date);
+      this.printOrderSummary();
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
@@ -31,7 +34,6 @@ class Controller {
   async inputDate() {
     try {
       this.#date = await InputView.readDate();
-      await this.inputMenu();
     } catch (error) {
       Console.print("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
       return this.inputDate();
@@ -43,19 +45,9 @@ class Controller {
       this.#menu = await InputView.readMenu();
       this.#menu = this.#orderService.splitMenuInput(this.#menu);
       this.#orderValidation.validateOrder(this.#menu);
-      this.printEvent();
     } catch (error) {
       Console.print("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
       return this.inputMenu();
-    }
-  }
-
-  async printEvent() {
-    try {
-      OutputView.printEvent(this.#date);
-      this.printOrderSummary();
-    } catch (error) {
-      Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
   }
 
