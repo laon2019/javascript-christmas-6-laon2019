@@ -5,6 +5,7 @@ import OutputView from "../view/OutputView";
 import OrderService from "../service/OrderService";
 import OrderValidation from "../service/OrderValidation";
 import TotalPriceService from "../service/TotalPriceService()";
+import GiftMenuService from "../service/GiftMenuService";
 
 class Controller {
   #date;
@@ -12,11 +13,13 @@ class Controller {
   #orderService;
   #orderValidation;
   #totalPriceService;
+  #giftMenuService;
 
   constructor() {
     this.#orderService = new OrderService();
     this.#orderValidation = new OrderValidation();
     this.#totalPriceService = new TotalPriceService();
+    this.#giftMenuService = new GiftMenuService();
   }
 
   async start() {
@@ -55,7 +58,9 @@ class Controller {
     try {
         OutputView.printMenu(this.#menu);
         const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
-        console.log(totalPrice)
+        OutputView.printTotalPrice(totalPrice);
+        const giftMenu = this.#giftMenuService.provideGift(totalPrice);
+        console.log(giftMenu);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
