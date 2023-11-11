@@ -33,6 +33,14 @@ class Menu {
       ...this.#BEVERAGE,
     ];
   }
+
+  static getMenuItemByName(menuName) {
+    const allMenuItems = this.getAllMenuItems();
+    // console.log(allMenuItems+"나는 모델");
+    const menuItem = allMenuItems.find(item => item.name === menuName);
+    return menuItem;
+  }
+
 }
 
 export default Menu;
