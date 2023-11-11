@@ -4,8 +4,9 @@ import { ERROR_MESSAGES } from "../utils/Messages";
 import OutputView from "../view/OutputView";
 import OrderService from "../service/OrderService";
 import OrderValidation from "../service/OrderValidation";
-import TotalPriceService from "../service/TotalPriceService()";
+import TotalPriceService from "../service/TotalPriceService";
 import GiftMenuService from "../service/GiftMenuService";
+import ValidateBenefitService from "../service/ValidateBenefitService";
 
 class Controller {
   #date;
@@ -14,12 +15,14 @@ class Controller {
   #orderValidation;
   #totalPriceService;
   #giftMenuService;
+  #validateBenefitService;
 
   constructor() {
     this.#orderService = new OrderService();
     this.#orderValidation = new OrderValidation();
     this.#totalPriceService = new TotalPriceService();
     this.#giftMenuService = new GiftMenuService();
+    this.#validateBenefitService = new ValidateBenefitService();
   }
 
   async start() {
@@ -61,6 +64,7 @@ class Controller {
         OutputView.printTotalPrice(totalPrice);
         const giftMenu = this.#giftMenuService.provideGift(totalPrice);
         OutputView.printGiftMenu(giftMenu);
+        const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, totalPrice);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
