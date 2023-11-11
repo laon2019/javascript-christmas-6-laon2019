@@ -16,7 +16,11 @@ const OutputView = {
     },
     printTotalPrice(price) {
         Console.print("<할인 전 총주문 금액>");
-        Console.print(`${price}원`)
+        Console.print(`${price}원`);
+    },
+    printGiftMenu(gift) {
+        Console.print("<증정 메뉴>");
+        Console.print(`${gift}`);
     }
 }
 export default OutputView;

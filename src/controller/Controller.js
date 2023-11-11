@@ -60,7 +60,7 @@ class Controller {
         const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
         OutputView.printTotalPrice(totalPrice);
         const giftMenu = this.#giftMenuService.provideGift(totalPrice);
-        console.log(giftMenu);
+        OutputView.printGiftMenu(giftMenu);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
