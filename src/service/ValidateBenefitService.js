@@ -10,7 +10,7 @@ class ValidateBenefitService {
 
     applySpecialEvents(menu, date, totalPrice){
         if(this.validateOrder(menu, totalPrice)){
-            
+            return this.#eventBenefitService.checkEvents(menu, date);
         }
         return ["없음", 0];
     }
