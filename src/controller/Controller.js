@@ -63,6 +63,7 @@ class Controller {
     try {
         OutputView.printMenu(this.#menu);
         const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
+        console.log(totalPrice)
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
