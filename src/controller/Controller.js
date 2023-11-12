@@ -65,6 +65,7 @@ class Controller {
         const giftMenu = this.#giftMenuService.provideGift(totalPrice);
         OutputView.printGiftMenu(giftMenu);
         const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, giftMenu, totalPrice);
+        OutputView.printTotalEvents(totalEvents);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }

@@ -21,6 +21,12 @@ const OutputView = {
     printGiftMenu(gift) {
         Console.print("<증정 메뉴>");
         Console.print(`${gift}`);
+    },
+    printTotalEvents(totalEvents){
+        Console.print("<혜택 내역>");
+        totalEvents.forEach((message)=>{
+            Console.print(message);
+        })
     }
 }
 export default OutputView;

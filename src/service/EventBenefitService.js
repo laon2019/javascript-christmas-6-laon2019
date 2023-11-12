@@ -2,7 +2,6 @@ import Menu from "../model/Menu";
 
 class EventBenefitService {
   checkEvents(menu, date, giftMenu) {
-    console.log(giftMenu)
     const totalEvents = [];
     const totalBenefits = [];
     const christmasDiscount = this.#calculateChristmasDiscount(date);
@@ -30,8 +29,6 @@ class EventBenefitService {
         totalEvents.push(`증정 이벤트: -${benefitDiscount.toLocaleString()}원`)
         totalBenefits.push(benefitDiscount);
     }
-    console.log(totalEvents);
-    console.log(totalBenefits);
     const totalBenefitsSum = this.#calculateTotalBenefits(totalBenefits);
     return [totalEvents, totalBenefitsSum];
   }
