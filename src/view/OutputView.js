@@ -33,8 +33,12 @@ const OutputView = {
         Console.print(`${price}`);
     },
     printTotalPaymentPrice(price){
-        Console.print("<총혜택 금액>");
+        Console.print("<할인 후 예상 결제 금액>");
         Console.print(`${price.toLocaleString()}원`);
     },
+    printEventBadge(bedge){
+        Console.print("<12월 이벤트 배지>");
+        Console.print(`${bedge}`);
+    }
 }
 export default OutputView;

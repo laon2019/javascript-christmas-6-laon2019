@@ -80,7 +80,7 @@ class Controller {
         const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
         OutputView.printTotalPaymentPrice(totalPaymentPrice);
         const eventBadge = this.#eventBadgeService.calculateEventBadge(totalBenefits);
-        console.log(eventBadge);
+        OutputView.printEventBadge(eventBadge);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
