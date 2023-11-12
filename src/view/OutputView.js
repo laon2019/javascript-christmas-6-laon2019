@@ -2,6 +2,9 @@ import { Console } from "@woowacourse/mission-utils";
 import { GAME_MESSAGES } from "../utils/Messages";
 
 const OutputView = {
+    print(message){
+        Console.print(message);
+    },
     printHello(){
         Console.print(GAME_MESSAGES.HELLO_MESSAGE);
     },

@@ -42,7 +42,7 @@ class Controller {
       OutputView.printEvent(this.#date);
       this.printOrderSummary();
     } catch (error) {
-      Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
+      OutputView.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
   }
 
@@ -50,7 +50,7 @@ class Controller {
     try {
       this.#date = await InputView.readDate();
     } catch (error) {
-      Console.print("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+      OutputView.print(ERROR_MESSAGES.INVALID_DATE);
       return this.inputDate();
     }
   }
@@ -61,28 +61,28 @@ class Controller {
       this.#menu = this.#orderService.splitMenuInput(this.#menu);
       this.#orderValidation.validateOrder(this.#menu);
     } catch (error) {
-      Console.print("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      OutputView.print(ERROR_MESSAGES.INVALID_MENU);
       return this.inputMenu();
     }
   }
 
   async printOrderSummary() {
     try {
-        OutputView.printMenu(this.#menu);
-        const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
-        OutputView.printTotalPrice(totalPrice);
-        const giftMenu = this.#giftMenuService.provideGift(totalPrice);
-        OutputView.printGiftMenu(giftMenu);
-        const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, giftMenu, totalPrice);
-        OutputView.printTotalEvents(totalEvents);
-        const totalBenefitsPrice = this.#totalBenefitsService.calculateTotalBenefits(totalBenefits);
-        OutputView.printTotalBenefitsPrice(totalBenefitsPrice);
-        const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
-        OutputView.printTotalPaymentPrice(totalPaymentPrice);
-        const eventBadge = this.#eventBadgeService.calculateEventBadge(totalBenefits);
-        OutputView.printEventBadge(eventBadge);
+      OutputView.printMenu(this.#menu);
+      const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
+      OutputView.printTotalPrice(totalPrice);
+      const giftMenu = this.#giftMenuService.provideGift(totalPrice);
+      OutputView.printGiftMenu(giftMenu);
+      const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, giftMenu, totalPrice);
+      OutputView.printTotalEvents(totalEvents);
+      const totalBenefitsPrice = this.#totalBenefitsService.calculateTotalBenefits(totalBenefits);
+      OutputView.printTotalBenefitsPrice(totalBenefitsPrice);
+      const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
+      OutputView.printTotalPaymentPrice(totalPaymentPrice);
+      const eventBadge = this.#eventBadgeService.calculateEventBadge(totalBenefits);
+      OutputView.printEventBadge(eventBadge);
     } catch (error) {
-      Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
+      OutputView.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
   }
 }
