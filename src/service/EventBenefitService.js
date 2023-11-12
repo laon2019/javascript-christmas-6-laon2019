@@ -7,27 +7,27 @@ class EventBenefitService {
     const totalBenefits = [];
     const christmasDiscount = this.#calculateChristmasDiscount(date);
     if (christmasDiscount) {
-      totalEvents.push(`크리스마스 디데이 할인: -${christmasDiscount}원`);
+      totalEvents.push(`크리스마스 디데이 할인: -${christmasDiscount.toLocaleString()}원`);
       totalBenefits.push(christmasDiscount);
     }
     const weekendDiscount = this.#calculateWeekendDiscount(date, menu);
     if (weekendDiscount){
-        totalEvents.push(`주말 할인: -${weekendDiscount}원`)
+        totalEvents.push(`주말 할인: -${weekendDiscount.toLocaleString()}원`)
         totalBenefits.push(weekendDiscount);
     }
     const weekdayDiscount = this.#calculateWeekDayDiscount(date, menu);
     if (weekdayDiscount){
-        totalEvents.push(`평일 할인: -${weekdayDiscount}원`)
+        totalEvents.push(`평일 할인: -${weekdayDiscount.toLocaleString()}원`)
         totalBenefits.push(weekdayDiscount);
     }
     const specialDiscount = this.#calculateSpcialDiscount(date);
     if (specialDiscount){
-        totalEvents.push(`특별 할인: -${specialDiscount}원`)
+        totalEvents.push(`특별 할인: -${specialDiscount.toLocaleString()}원`)
         totalBenefits.push(specialDiscount);
     }
     const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
     if (benefitDiscount){
-        totalEvents.push(`증정 이벤트: -${benefitDiscount}원`)
+        totalEvents.push(`증정 이벤트: -${benefitDiscount.toLocaleString()}원`)
         totalBenefits.push(benefitDiscount);
     }
     console.log(totalEvents);
