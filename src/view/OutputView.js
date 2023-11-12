@@ -27,6 +27,10 @@ const OutputView = {
         totalEvents.forEach((message)=>{
             Console.print(message);
         })
+    },
+    printTotalBenefitsPrice(Price){
+        Console.print("<총혜택 금액>");
+        Console.print(`${Price}`);
     }
 }
 export default OutputView;

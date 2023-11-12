@@ -70,6 +70,7 @@ class Controller {
         const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, giftMenu, totalPrice);
         OutputView.printTotalEvents(totalEvents);
         const totalBenefitsPrice = this.#totalBenefitsService.calculateTotalBenefits(totalBenefits);
+        OutputView.printTotalBenefitsPrice(totalBenefitsPrice);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
