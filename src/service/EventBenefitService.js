@@ -20,6 +20,11 @@ class EventBenefitService {
         totalEvents.push(`평일 할인: -${weekdayDiscount}원`)
         totalBenefits.push(weekdayDiscount);
     }
+    const specialDiscount = this.#calculateSpcialDiscount(date);
+    if (specialDiscount){
+        totalEvents.push(`특별 할인: -${specialDiscount}원`)
+        totalBenefits.push(specialDiscount);
+    }
     
     console.log(totalEvents);
     console.log(totalBenefits);
@@ -67,6 +72,13 @@ class EventBenefitService {
         }, 0);
       return mainCourseCount * 2023;
     }
+  }
+  #calculateSpcialDiscount(date){
+    const specialDay = ["3", "10", "17", "24", "25", "31"];
+    if (specialDay.includes(date)) {
+        return 1000;
+    }
+    return 0;
   }
   
 }
