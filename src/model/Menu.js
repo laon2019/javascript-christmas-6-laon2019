@@ -40,6 +40,18 @@ class Menu {
     ];
   }
 
+  static getDessert(){
+    return [
+      ...this.#DESSERT,
+    ];
+  }
+  
+  static getMainCourse(){
+    return [
+      ...this.#MAIN_COURSE,
+    ];
+  }
+
   static getMenuItemByName(menuName) {
     const allMenuItems = this.getAllMenuItems();
     const menuItem = allMenuItems.find(item => item.name === menuName);

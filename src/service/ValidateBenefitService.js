@@ -25,6 +25,7 @@ class ValidateBenefitService {
         const Price = Number(totalPrice.replace(/,/g, ''));
         return Price >= 10000;
     }
+    
     isBeverageOnly(menu) {
         const beverageMenuItems = Menu.getBeverage();
         const orderItems = menu.map(item => item[0]);
