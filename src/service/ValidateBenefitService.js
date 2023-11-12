@@ -8,9 +8,9 @@ class ValidateBenefitService {
         this.#eventBenefitService = new EventBenefitService();
     }
 
-    applySpecialEvents(menu, date, totalPrice){
+    applySpecialEvents(menu, date, giftMenu, totalPrice){
         if(this.validateOrder(menu, totalPrice)){
-            return this.#eventBenefitService.checkEvents(menu, date);
+            return this.#eventBenefitService.checkEvents(menu, date, giftMenu);
         }
         return ["없음", 0];
     }
@@ -25,7 +25,7 @@ class ValidateBenefitService {
         const Price = Number(totalPrice.replace(/,/g, ''));
         return Price >= 10000;
     }
-    
+
     isBeverageOnly(menu) {
         const beverageMenuItems = Menu.getBeverage();
         const orderItems = menu.map(item => item[0]);

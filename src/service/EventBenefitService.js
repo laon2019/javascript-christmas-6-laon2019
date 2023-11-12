@@ -1,7 +1,8 @@
 import Menu from "../model/Menu";
 
 class EventBenefitService {
-  checkEvents(menu, date) {
+  checkEvents(menu, date, giftMenu) {
+    console.log(giftMenu)
     const totalEvents = [];
     const totalBenefits = [];
     const christmasDiscount = this.#calculateChristmasDiscount(date);
@@ -9,12 +10,19 @@ class EventBenefitService {
       totalEvents.push(`크리스마스 디데이 할인: -${christmasDiscount}원`);
       totalBenefits.push(christmasDiscount);
     }
-    const WeekendDiscount = this.#calculateWeekendDiscount(date, menu);
-    if (WeekendDiscount){
-        totalEvents.push(`주말 할인: -${WeekendDiscount}원`)
-        totalBenefits.push(WeekendDiscount);
+    const weekendDiscount = this.#calculateWeekendDiscount(date, menu);
+    if (weekendDiscount){
+        totalEvents.push(`주말 할인: -${weekendDiscount}원`)
+        totalBenefits.push(weekendDiscount);
     }
-    console.log(totalEvents+ " : "+totalBenefits);
+    const weekdayDiscount = this.#calculateWeekDayDiscount(date, menu);
+    if (weekdayDiscount){
+        totalEvents.push(`평일 할인: -${weekdayDiscount}원`)
+        totalBenefits.push(weekdayDiscount);
+    }
+    
+    console.log(totalEvents);
+    console.log(totalBenefits);
     const totalBenefitsSum = this.#calculateTotalBenefits(totalBenefits);
     return [totalEvents, totalBenefitsSum];
   }
@@ -34,7 +42,7 @@ class EventBenefitService {
   }
 
   #calculateWeekendDiscount(date, menu) {
-    const weekend = [1, 2, 8, 9, 15, 16, 22, 23, 29];
+    const weekend = ["1", "2", "8", "9", "15", "16", "22", "23", "29"];
     if (weekend.includes(date)) {
       const dessertMenuItems = Menu.getDessert();
       const dessertCount = menu.reduce((count, [itemName, quantity]) => {
@@ -47,18 +55,19 @@ class EventBenefitService {
     }
   }
 
-  #calculateWeekDay(date, menu){
-    const weekday = [3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 31];
+  #calculateWeekDayDiscount(date, menu){
+    const weekday = ["3", "4", "5", "6", "7", "10", "11", "12", "13", "14", "17", "18", "19", "20", "21", "24", "25", "26", "27", "28", "31"];
     if (weekday.includes(date)) {
       const mainCourseMenuItems = Menu.getMainCourse();
       const mainCourseCount = menu.reduce((count, [itemName, quantity]) => {
-        if (mainCourseMenuItems.some((mainCourse) => mainCourse.name === itemName)) {
-          return count + quantity;
-        }
-        return count;
-      }, 0);
+          if (mainCourseMenuItems.some((mainCourse) => mainCourse.name === itemName)) {
+              return count + quantity;
+            }
+            return count;
+        }, 0);
       return mainCourseCount * 2023;
     }
   }
+  
 }
 export default EventBenefitService;
