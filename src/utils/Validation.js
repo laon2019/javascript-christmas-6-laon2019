@@ -1,13 +1,15 @@
-const isNumberInRange = (number) => {
-    return number >= 1 && number <= 31;
-};
+class DateValidation {
+  static validation(number) {
+    return this.isNumberInRange(number) && this.isNumber(number);
+  }
 
-const isNumber = (number) => {
+  static isNumberInRange(number) {
+    return number >= 1 && number <= 31;
+  }
+
+  static isNumber(number) {
     return !isNaN(Number(number));
+  }
 }
 
-const isNotEnglish = (text) => {
-    return !/^[a-zA-Z]+$/.test(text);
-};
-
-export { isNumber, isNumberInRange, isNotEnglish };
+export default DateValidation;
