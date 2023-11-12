@@ -28,9 +28,13 @@ const OutputView = {
             Console.print(message);
         })
     },
-    printTotalBenefitsPrice(Price){
+    printTotalBenefitsPrice(price){
         Console.print("<총혜택 금액>");
-        Console.print(`${Price}`);
-    }
+        Console.print(`${price}`);
+    },
+    printTotalPaymentPrice(price){
+        Console.print("<총혜택 금액>");
+        Console.print(`${price.toLocaleString()}원`);
+    },
 }
 export default OutputView;
