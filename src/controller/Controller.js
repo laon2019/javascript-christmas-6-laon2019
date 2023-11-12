@@ -74,8 +74,7 @@ class Controller {
         OutputView.printTotalEvents(totalEvents);
         const totalBenefitsPrice = this.#totalBenefitsService.calculateTotalBenefits(totalBenefits);
         OutputView.printTotalBenefitsPrice(totalBenefitsPrice);
-        const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits);
-        console.log(totalPaymentPrice)
+        const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
     } catch (error) {
       Console.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }

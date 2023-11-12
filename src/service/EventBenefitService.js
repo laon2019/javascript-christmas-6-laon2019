@@ -26,7 +26,7 @@ class EventBenefitService {
     }
     const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
     if (benefitDiscount){
-        totalEvents.push(`증정 이벤트: -${benefitDiscount.toLocaleString()}원`)
+        totalEvents.push(`증정 이벤트: -${benefitDiscount.toLocaleString()}원`);
         totalBenefits.push(benefitDiscount);
     }
     const totalBenefitsSum = this.#calculateTotalBenefits(totalBenefits);
