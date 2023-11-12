@@ -1,4 +1,5 @@
 import Menu from "../model/Menu";
+import { ERROR_MENU_MESSAGES } from "../utils/Messages";
 
 class OrderValidation {
   validateOrder(menuItems) {
@@ -11,10 +12,11 @@ class OrderValidation {
 
   #validateMaxOrderCount(menuItems) {
     const totalQuantity = menuItems.reduce(
-      (sum, [, quantity]) => sum + quantity
-      , 0);
+      (sum, [, quantity]) => sum + quantity,
+      0
+    );
     if (totalQuantity > 20) {
-      throw new Error("[ERROR] 한 번에 최대 20개까지만 주문 가능합니다.");
+      throw new Error(ERROR_MENU_MESSAGES.MAX_ORDER_COUNT);
     }
   }
 
@@ -24,7 +26,7 @@ class OrderValidation {
     menuItems.forEach((menu) => {
       const itemName = menu[0];
       if (!allMenuNames.includes(itemName)) {
-        throw new Error("[ERROR] 메뉴판에 없는 메뉴를 주문했습니다");
+        throw new Error(ERROR_MENU_MESSAGES.INVALID_MENU);
       }
     });
   }
@@ -32,7 +34,7 @@ class OrderValidation {
   #validateQuantity(menuItems) {
     menuItems.forEach((menu) => {
       if (menu[1] < 1) {
-        throw new Error("[ERROR] 메뉴의 개수는 1 이상의 정수만 입력되어야 합니다");
+        throw new Error(ERROR_MENU_MESSAGES.INVALID_QUANTITY);
       }
     });
   }
@@ -40,7 +42,7 @@ class OrderValidation {
   #validateNumber(menuItems) {
     menuItems.forEach((menu) => {
       if (isNaN(Number(menu[1]))) {
-        throw new Error("[ERROR] 메뉴의 개수는 숫자를 입력해야 합니다.");
+        throw new Error(ERROR_MENU_MESSAGES.INVALID_NUMBER);
       }
     });
   }
@@ -51,7 +53,7 @@ class OrderValidation {
       menuNamesSet.add(menu[0]);
     });
     if (menuItems.length !== menuNamesSet.size) {
-      throw new Error("[ERROR] 중복된 메뉴를 주문했습니다.");
+      throw new Error(ERROR_MENU_MESSAGES.DUPLICATE_MENU);
     }
   }
 }
