@@ -9,8 +9,7 @@ class TotalPriceService {
       }
       return acc;
     }, 0);
-
-    return totalPrice.toLocaleString();
+    return totalPrice;
   }
 }
 

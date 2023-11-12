@@ -22,8 +22,7 @@ class ValidateBenefitService {
     }
 
     isPriceOverTenThousand(totalPrice){
-        const Price = Number(totalPrice.replace(/,/g, ''));
-        return Price >= 10000;
+        return totalPrice >= 10000;
     }
 
     isBeverageOnly(menu) {
