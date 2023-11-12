@@ -25,7 +25,11 @@ class EventBenefitService {
         totalEvents.push(`특별 할인: -${specialDiscount}원`)
         totalBenefits.push(specialDiscount);
     }
-    
+    const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
+    if (benefitDiscount){
+        totalEvents.push(`증정 이벤트: -${benefitDiscount}원`)
+        totalBenefits.push(benefitDiscount);
+    }
     console.log(totalEvents);
     console.log(totalBenefits);
     const totalBenefitsSum = this.#calculateTotalBenefits(totalBenefits);
@@ -80,6 +84,11 @@ class EventBenefitService {
     }
     return 0;
   }
-  
+  #calculateBenefitDiscount(giftMenu){
+    if(giftMenu === "샴페인 1개"){
+        return 25000;
+    }
+    return 0;
+  }
 }
 export default EventBenefitService;
