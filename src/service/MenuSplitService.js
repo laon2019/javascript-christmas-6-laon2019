@@ -1,4 +1,4 @@
-class OrderService {
+class MenuSplitService {
   splitMenuInput(menuInput) {
     const menuItems = menuInput.split(",");
     const parsedOrder = [];
@@ -10,4 +10,4 @@ class OrderService {
     return parsedOrder;
   }
 }
-export default OrderService;
+export default MenuSplitService;

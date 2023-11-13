@@ -1,7 +1,7 @@
 import InputView from "../view/InputView";
 import { ERROR_MESSAGES } from "../utils/Messages";
 import OutputView from "../view/OutputView";
-import OrderService from "../service/OrderService";
+import MenuSplitService from "../service/MenuSplitService";
 import OrderValidation from "../service/OrderValidation";
 import TotalPriceService from "../service/TotalPriceService";
 import ValidateBenefitService from "../service/ValidateBenefitService";
@@ -10,14 +10,14 @@ import TotalPaymentService from "../service/TotalPaymentService";
 class Controller {
   #date;
   #menu;
-  #orderService;
+  #menuSplitService;
   #orderValidation;
   #totalPriceService;
   #validateBenefitService;
   #totalPaymentService;
 
   constructor() {
-    this.#orderService = new OrderService();
+    this.#menuSplitService = new MenuSplitService();
     this.#orderValidation = new OrderValidation();
     this.#totalPriceService = new TotalPriceService();
     this.#validateBenefitService = new ValidateBenefitService();
@@ -47,7 +47,7 @@ class Controller {
   async #inputMenu() {
     try {
       this.#menu = await InputView.readMenu();
-      this.#menu = this.#orderService.splitMenuInput(this.#menu);
+      this.#menu = this.#menuSplitService.splitMenuInput(this.#menu);
       this.#orderValidation.validateOrder(this.#menu);
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.INVALID_MENU);
