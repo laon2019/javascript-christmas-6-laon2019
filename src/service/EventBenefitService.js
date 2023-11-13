@@ -60,30 +60,30 @@ class EventBenefitService {
 
   #calculateWeekendDiscount(menu, isWeekEnd) {
     if (isWeekEnd) {
-      const dessertMenuItems = Menu.getDessert();
-      const dessertCount = menu.reduce((count, [itemName, quantity]) => {
-        if (dessertMenuItems.some((dessert) => dessert.name === itemName)) {
-          return count + quantity;
-        }
-        return count;
-      }, 0);
-      return dessertCount * 2023;
-    }
-    return 0;
+        const mainCourseMenuItems = Menu.getMainCourse();
+        const mainCourseCount = menu.reduce((count, [itemName, quantity]) => {
+            if (mainCourseMenuItems.some((mainCourse) => mainCourse.name === itemName)) {
+                return count + quantity;
+              }
+              return count;
+          }, 0);
+        return mainCourseCount * 2023;
+      }
+      return 0;
   }
 
   #calculateWeekDayDiscount(menu, isWeekEnd){
-   if (isWeekEnd) {
-      const mainCourseMenuItems = Menu.getMainCourse();
-      const mainCourseCount = menu.reduce((count, [itemName, quantity]) => {
-          if (mainCourseMenuItems.some((mainCourse) => mainCourse.name === itemName)) {
-              return count + quantity;
-            }
-            return count;
+    if (isWeekEnd) {
+        const dessertMenuItems = Menu.getDessert();
+        const dessertCount = menu.reduce((count, [itemName, quantity]) => {
+          if (dessertMenuItems.some((dessert) => dessert.name === itemName)) {
+            return count + quantity;
+          }
+          return count;
         }, 0);
-      return mainCourseCount * 2023;
-    }
-    return 0;
+        return dessertCount * 2023;
+      }
+      return 0;
   }
 
   #calculateSpecialDiscount(date){
