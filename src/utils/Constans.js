@@ -34,6 +34,7 @@ const SPLIT_STRING = Object.freeze({
 const NUMBER = Object.freeze({
   ZERO: 0,
   ONE: 1,
+  TEN: 10,
 });
 
 export {
