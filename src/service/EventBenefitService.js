@@ -83,7 +83,7 @@ class EventBenefitService {
     return 0;
   }
   #calculateBenefitDiscount(giftMenu) {
-    if (giftMenu === "샴페인 1개") {
+    if (giftMenu) {
       return 25000;
     }
     return 0;

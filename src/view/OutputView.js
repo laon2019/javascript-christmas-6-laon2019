@@ -25,7 +25,7 @@ const OutputView = {
   },
   printGiftMenu(gift) {
     Console.print("<증정 메뉴>");
-    Console.print(`${gift}`);
+    Console.print(gift ? "샴페인 1개" : "없음");
   },
   printTotalEvents(totalEvents) {
     Console.print("<혜택 내역>");
