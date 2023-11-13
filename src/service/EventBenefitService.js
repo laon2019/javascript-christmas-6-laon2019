@@ -10,33 +10,23 @@ class EventBenefitService {
 
   checkEvents(menu, date, giftMenu) {
     const christmasDiscount = this.#calculateChristmasDiscount(date);
-    this.#event.setChristmasDiscount(christmasDiscount);
-
     const isWeekEnd = this.#checkWeekEnd(date);
-
     const weekendDiscount = this.#calculateWeekendOrWeekdayDiscount(menu, isWeekEnd, Menu.getMainCourse());
-    this.#event.setWeekendDiscount(weekendDiscount);
-
     const weekdayDiscount = this.#calculateWeekendOrWeekdayDiscount(menu, !isWeekEnd, Menu.getDessert());
-    this.#event.setWeekdayDiscount(weekdayDiscount);
-
     const specialDiscount = this.#calculateSpecialDiscount(date);
-    this.#event.setSpecialDiscount(specialDiscount);
-
     const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
-    this.#event.setBenefitDiscount(benefitDiscount);
-
+    this.#updateEvent(christmasDiscount, weekendDiscount, weekdayDiscount, specialDiscount, benefitDiscount);
     const allEvent = this.#event.getAllEvents();
-
-    const totalBenefitsSum = this.#calculateTotalBenefits([
-      christmasDiscount,
-      weekendDiscount,
-      weekdayDiscount,
-      specialDiscount,
-      benefitDiscount,
-    ]);
-
+    const totalBenefitsSum = this.#calculateTotalBenefits([christmasDiscount, weekendDiscount, weekdayDiscount, specialDiscount, benefitDiscount]);
     return [allEvent, totalBenefitsSum];
+  }
+
+  #updateEvent(christmasDiscount, weekendDiscount, weekdayDiscount, specialDiscount, benefitDiscount) {
+    this.#event.setChristmasDiscount(christmasDiscount);
+    this.#event.setWeekendDiscount(weekendDiscount);
+    this.#event.setWeekdayDiscount(weekdayDiscount);
+    this.#event.setSpecialDiscount(specialDiscount);
+    this.#event.setBenefitDiscount(benefitDiscount);
   }
 
   #calculateTotalBenefits(benefits) {
