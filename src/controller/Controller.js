@@ -24,53 +24,58 @@ class Controller {
     this.#totalPaymentService = new TotalPaymentService();
   }
 
-  async start() {
+  async decemberEvent() {
     try {
       OutputView.printHello();
-      await this.inputDate();
-      await this.inputMenu();
-      OutputView.printEvent(this.#date);
-      this.printOrderSummary();
+      await this.#inputDate();
+      await this.#inputMenu();
+      this.#processOrder();
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
   }
 
-  async inputDate() {
+  async #inputDate() {
     try {
       this.#date = await InputView.readDate();
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.INVALID_DATE);
-      return this.inputDate();
+      return this.#inputDate();
     }
   }
 
-  async inputMenu() {
+  async #inputMenu() {
     try {
       this.#menu = await InputView.readMenu();
       this.#menu = this.#orderService.splitMenuInput(this.#menu);
       this.#orderValidation.validateOrder(this.#menu);
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.INVALID_MENU);
-      return this.inputMenu();
+      return this.#inputMenu();
     }
   }
 
-  async printOrderSummary() {
+  async #processOrder() {
     try {
-      OutputView.printMenu(this.#menu);
       const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
-      OutputView.printTotalPrice(totalPrice);
       const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, totalPrice);
-      OutputView.printGiftMenu(totalEvents);
-      OutputView.printTotalEvents(totalEvents);
-      OutputView.printTotalBenefitsPrice(totalBenefits);
-      const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, totalEvents);
-      OutputView.printTotalPaymentPrice(totalPaymentPrice);
-      OutputView.printEventBadge(totalPaymentPrice);
+      this.#printOrderSummary(totalPrice, totalEvents, totalBenefits);
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }
   }
+
+  async #printOrderSummary(totalPrice, totalEvents, totalBenefits) {
+    const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, totalEvents);
+
+    OutputView.printMenu(this.#menu);
+    OutputView.printTotalPrice(totalPrice);
+    OutputView.printGiftMenu(totalEvents);
+    OutputView.printTotalEvents(totalEvents);
+    OutputView.printTotalBenefitsPrice(totalBenefits);
+    OutputView.printTotalPaymentPrice(totalPaymentPrice);
+    OutputView.printEventBadge(totalPaymentPrice);
+  }
 }
+
 export default Controller;
