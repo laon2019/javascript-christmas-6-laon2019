@@ -1,5 +1,4 @@
 import InputView from "../view/InputView";
-import { Console } from "@woowacourse/mission-utils";
 import { ERROR_MESSAGES } from "../utils/Messages";
 import OutputView from "../view/OutputView";
 import OrderService from "../service/OrderService";
@@ -7,7 +6,6 @@ import OrderValidation from "../service/OrderValidation";
 import TotalPriceService from "../service/TotalPriceService";
 import GiftMenuService from "../service/GiftMenuService";
 import ValidateBenefitService from "../service/ValidateBenefitService";
-import TotalBenefitsService from "../service/TotalBenefitsService";
 import TotalPaymentService from "../service/TotalPaymentService";
 import EventBadgeService from "../service/EventBadgeService";
 
@@ -19,7 +17,6 @@ class Controller {
   #totalPriceService;
   #giftMenuService;
   #validateBenefitService;
-  #totalBenefitsService;
   #totalPaymentService;
   #eventBadgeService;
 
@@ -29,7 +26,6 @@ class Controller {
     this.#totalPriceService = new TotalPriceService();
     this.#giftMenuService = new GiftMenuService();
     this.#validateBenefitService = new ValidateBenefitService();
-    this.#totalBenefitsService = new TotalBenefitsService();
     this.#totalPaymentService = new TotalPaymentService();
     this.#eventBadgeService = new EventBadgeService();
   }
@@ -75,8 +71,7 @@ class Controller {
       OutputView.printGiftMenu(giftMenu);
       const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, giftMenu, totalPrice);
       OutputView.printTotalEvents(totalEvents);
-      const totalBenefitsPrice = this.#totalBenefitsService.calculateTotalBenefits(totalBenefits);
-      OutputView.printTotalBenefitsPrice(totalBenefitsPrice);
+      OutputView.printTotalBenefitsPrice(totalBenefits);
       const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
       OutputView.printTotalPaymentPrice(totalPaymentPrice);
       const eventBadge = this.#eventBadgeService.calculateEventBadge(totalBenefits);

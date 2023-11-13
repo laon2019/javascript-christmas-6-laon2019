@@ -43,7 +43,10 @@ const OutputView = {
   },
   printTotalBenefitsPrice(price) {
     Console.print("<총혜택 금액>");
-    Console.print(`${price}`);
+    if(price>0){
+        return Console.print(`-${price.toLocaleString()}원`);
+    }
+    return Console.print(`${price}원`);
   },
   printTotalPaymentPrice(price) {
     Console.print("<할인 후 예상 결제 금액>");
