@@ -73,7 +73,7 @@ class EventBenefitService {
   }
 
   #calculateWeekDayDiscount(menu, isWeekEnd){
-    if (isWeekEnd) {
+    if (!isWeekEnd) {
         const dessertMenuItems = Menu.getDessert();
         const dessertCount = menu.reduce((count, [itemName, quantity]) => {
           if (dessertMenuItems.some((dessert) => dessert.name === itemName)) {
