@@ -1,28 +1,29 @@
 import MenuItem from './MenuItem';
+import { MENU, PRICE } from '../utils/Constans';
 
 class Menu {
   static #APPETIZER = [
-    new MenuItem("양송이수프", 6000),
-    new MenuItem("타파스", 5500),
-    new MenuItem("시저샐러드", 8000),
+    new MenuItem(MENU.SOUP, PRICE.SOUP_PRICE),
+    new MenuItem(MENU.TAPAS, PRICE.TAPAS_PRICE),
+    new MenuItem(MENU.CAESAR_SALAD, PRICE.CAESAR_SALAD_PRICE),
   ];
 
   static #MAIN_COURSE = [
-    new MenuItem("티본스테이크", 55000),
-    new MenuItem("바비큐립", 54000),
-    new MenuItem("해산물파스타", 35000),
-    new MenuItem("크리스마스파스타", 25000),
+    new MenuItem(MENU.T_BONE_STEAK, PRICE.T_BONE_STEAK_PRICE),
+    new MenuItem(MENU.BBQ_RIBS, PRICE.BBQ_RIBS_PRICE),
+    new MenuItem(MENU.SEAFOOD_PASTA, PRICE.SEAFOOD_PASTA_PRICE),
+    new MenuItem(MENU.CHRISTMAS_PASTA, PRICE.CHRISTMAS_PASTA_PRICE),
   ];
 
   static #DESSERT = [
-    new MenuItem("초코케이크", 15000),
-    new MenuItem("아이스크림", 5000),
+    new MenuItem(MENU.CHOCO_CAKE, PRICE.CHOCO_CAKE_PRICE),
+    new MenuItem(MENU.ICE_CREAM, PRICE.ICE_CREAM_PRICE),
   ];
 
   static #BEVERAGE = [
-    new MenuItem("제로콜라", 3000),
-    new MenuItem("레드와인", 60000),
-    new MenuItem("샴페인", 25000),
+    new MenuItem(MENU.ZERO_COLA, PRICE.ZERO_COLA_PRICE),
+    new MenuItem(MENU.RED_WINE, PRICE.RED_WINE_PRICE),
+    new MenuItem(MENU.CHAMPAGNE, PRICE.CHAMPAGNE_PRICE),
   ];
 
   static getAllMenuItems() {
