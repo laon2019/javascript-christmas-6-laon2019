@@ -7,7 +7,6 @@ import TotalPriceService from "../service/TotalPriceService";
 import GiftMenuService from "../service/GiftMenuService";
 import ValidateBenefitService from "../service/ValidateBenefitService";
 import TotalPaymentService from "../service/TotalPaymentService";
-import EventBadgeService from "../service/EventBadgeService";
 
 class Controller {
   #date;
@@ -18,7 +17,6 @@ class Controller {
   #giftMenuService;
   #validateBenefitService;
   #totalPaymentService;
-  #eventBadgeService;
 
   constructor() {
     this.#orderService = new OrderService();
@@ -27,7 +25,6 @@ class Controller {
     this.#giftMenuService = new GiftMenuService();
     this.#validateBenefitService = new ValidateBenefitService();
     this.#totalPaymentService = new TotalPaymentService();
-    this.#eventBadgeService = new EventBadgeService();
   }
 
   async start() {
@@ -74,8 +71,7 @@ class Controller {
       OutputView.printTotalBenefitsPrice(totalBenefits);
       const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
       OutputView.printTotalPaymentPrice(totalPaymentPrice);
-      const eventBadge = this.#eventBadgeService.calculateEventBadge(totalBenefits);
-      OutputView.printEventBadge(eventBadge);
+      OutputView.printEventBadge(totalPaymentPrice);
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.DEFAULT_ERROR);
     }

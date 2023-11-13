@@ -29,22 +29,22 @@ const OutputView = {
   },
   printTotalEvents(totalEvents) {
     Console.print("<혜택 내역>");
-    if(!totalEvents){
-        Console.print("없음");
-    } else{
-        Object.entries(totalEvents).forEach(([event, discount]) => {
-            if (discount > 0) {
-              const formattedDiscount = discount.toLocaleString();
-              const formattedEvent = `${event}: -${formattedDiscount}원`;
-              Console.print(formattedEvent);
-            }
-          });
+    if (!totalEvents) {
+      Console.print("없음");
+    } else {
+      Object.entries(totalEvents).forEach(([event, discount]) => {
+        if (discount > 0) {
+          const formattedDiscount = discount.toLocaleString();
+          const formattedEvent = `${event}: -${formattedDiscount}원`;
+          Console.print(formattedEvent);
+        }
+      });
     }
   },
   printTotalBenefitsPrice(price) {
     Console.print("<총혜택 금액>");
-    if(price>0){
-        return Console.print(`-${price.toLocaleString()}원`);
+    if (price > 0) {
+      return Console.print(`-${price.toLocaleString()}원`);
     }
     return Console.print(`${price}원`);
   },
@@ -52,9 +52,12 @@ const OutputView = {
     Console.print("<할인 후 예상 결제 금액>");
     Console.print(`${price.toLocaleString()}원`);
   },
-  printEventBadge(bedge) {
+  printEventBadge(totalPaymentPrice) {
     Console.print("<12월 이벤트 배지>");
-    Console.print(`${bedge}`);
+    if (totalPaymentPrice >= 20000) Console.print("산타");
+    if (totalPaymentPrice >= 10000) Console.print("트리");
+    if (totalPaymentPrice >= 5000) Console.print("별");
+    if (totalPaymentPrice < 5000) Console.print("없음");
   },
 };
 export default OutputView;
