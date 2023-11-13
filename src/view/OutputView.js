@@ -1,6 +1,6 @@
-import { Console } from "@woowacourse/mission-utils";
-import { GAME_MESSAGES, VIEW_MESSAGES } from "../utils/Messages";
-import { EVENT_AMOUNT, EVENT_STRING, EVENT_BEDGE_AMOUNT, EVENT_BEDGE } from "../utils/Constans";
+import { Console } from '@woowacourse/mission-utils';
+import { GAME_MESSAGES, VIEW_MESSAGES } from '../utils/Messages';
+import { EVENT_AMOUNT, EVENT_STRING, EVENT_BEDGE_AMOUNT, EVENT_BEDGE } from '../utils/Constans';
 
 const OutputView = {
   print(message) {
@@ -71,8 +71,8 @@ const OutputView = {
     Console.print(VIEW_MESSAGES.EVENT_BADGE_TITLE);
     if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.SANTA_AMOUNT) Console.print(EVENT_BEDGE.SANTA);
     if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.TREE_AMOUNT) Console.print(EVENT_BEDGE.TREE);
-    if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.SANTA_AMOUNT) Console.print(EVENT_BEDGE.STAR);
-    if (totalPaymentPrice < EVENT_BEDGE_AMOUNT.SANTA_AMOUNT) Console.print(EVENT_STRING.GIFT_NONE);
+    if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.STAR_AMOUNT) Console.print(EVENT_BEDGE.STAR);
+    if (totalPaymentPrice < EVENT_BEDGE_AMOUNT.STAR_AMOUNT) Console.print(EVENT_STRING.GIFT_NONE);
   },
 };
 export default OutputView;

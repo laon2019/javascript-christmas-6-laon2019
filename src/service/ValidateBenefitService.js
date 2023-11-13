@@ -1,36 +1,38 @@
-import Menu from "../model/Menu";
-import EventBenefitService from "./EventBenefitService";
-import { EVENT_AMOUNT, NUMBER } from "../utils/Constans";
+import Menu from '../model/Menu';
+import EventBenefitService from './EventBenefitService';
+import { EVENT_AMOUNT, NUMBER } from '../utils/Constans';
 
 class ValidateBenefitService {
-    #eventBenefitService
+  #eventBenefitService;
 
-    constructor(){
-        this.#eventBenefitService = new EventBenefitService();
-    }
+  constructor() {
+    this.#eventBenefitService = new EventBenefitService();
+  }
 
-    applySpecialEvents(menu, date, totalPrice){
-        if(this.validateOrder(menu, totalPrice)){
-            return this.#eventBenefitService.checkEvents(menu, date, totalPrice);
-        }
-        return [false, NUMBER.ZERO];
+  applySpecialEvents(menu, date, totalPrice) {
+    if (this.validateOrder(menu, totalPrice)) {
+      return this.#eventBenefitService.checkEvents(menu, date, totalPrice);
     }
-    
-    validateOrder(menu, totalPrice){
-        const isPriceOver = this.isPriceOverTenThousand(totalPrice);
-        const isBeverageOnly = this.isBeverageOnly(menu);
-        return isPriceOver && !isBeverageOnly;
-    }
+    return [false, NUMBER.ZERO];
+  }
 
-    isPriceOverTenThousand(totalPrice){
-        return totalPrice >= EVENT_AMOUNT.PRICE_THRESHOLD;
-    }
+  validateOrder(menu, totalPrice) {
+    const isPriceOver = this.isPriceOverTenThousand(totalPrice);
+    const isBeverageOnly = this.isBeverageOnly(menu);
+    return isPriceOver && !isBeverageOnly;
+  }
 
-    isBeverageOnly(menu) {
-        const beverageMenuItems = Menu.getBeverage();
-        const orderItems = menu.map(item => item[NUMBER.ZERO]);
-        const isBeverageOnly = orderItems.every(item => beverageMenuItems.some(beverage => beverage.name === item));
-        return isBeverageOnly;
-    }
+  isPriceOverTenThousand(totalPrice) {
+    return totalPrice >= EVENT_AMOUNT.PRICE_THRESHOLD;
+  }
+
+  isBeverageOnly(menu) {
+    const beverageMenuItems = Menu.getBeverage();
+    const orderItems = menu.map((item) => item[NUMBER.ZERO]);
+    const isBeverageOnly = orderItems.every((item) =>
+      beverageMenuItems.some((beverage) => beverage.name === item)
+    );
+    return isBeverageOnly;
+  }
 }
 export default ValidateBenefitService;

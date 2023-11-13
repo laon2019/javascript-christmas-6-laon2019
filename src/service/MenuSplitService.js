@@ -1,4 +1,4 @@
-import { SPLIT_STRING } from "../utils/Constans";
+import { SPLIT_STRING } from '../utils/Constans';
 
 class MenuSplitService {
   splitMenuInput(menuInput) {

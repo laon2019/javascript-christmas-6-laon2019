@@ -1,6 +1,6 @@
-import Menu from "../model/Menu";
-import { ERROR_MENU_MESSAGES } from "../utils/Messages";
-import { NUMBER, EVENT_CONSTANTS } from "../utils/Constans";
+import Menu from '../model/Menu';
+import { ERROR_MENU_MESSAGES } from '../utils/Messages';
+import { NUMBER, EVENT_CONSTANTS } from '../utils/Constans';
 
 class OrderValidation {
   validateOrder(menuItems) {

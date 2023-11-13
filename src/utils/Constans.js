@@ -10,8 +10,8 @@ const EVENT_AMOUNT = Object.freeze({
 });
 
 const DATE_CONSTANTS = Object.freeze({
-  WEEKEND_DAYS: ["1", "2", "8", "9", "15", "16", "22", "23", "29"],
-  SPECIAL_DAYS: ["3", "10", "17", "24", "25", "31"],
+  WEEKEND_DAYS: ['1', '2', '8', '9', '15', '16', '22', '23', '29'],
+  SPECIAL_DAYS: ['3', '10', '17', '24', '25', '31'],
 });
 
 const EVENT_CONSTANTS = Object.freeze({
@@ -19,13 +19,13 @@ const EVENT_CONSTANTS = Object.freeze({
 });
 
 const EVENT_STRING = Object.freeze({
-  CHRISTMAS_DISCOUNT: "크리스마스 디데이 할인",
-  WEEKEND_DISCOUNT: "주말 할인",
-  WEEKDAY_DISCOUNT: "평일 할인",
-  SPECIAL_DISCOUNT: "특별 할인",
-  GIFT_EVENT: "증정 이벤트",
-  GIFT_CHAMPAGNE: "샴페인 1개",
-  GIFT_NONE: "없음",
+  CHRISTMAS_DISCOUNT: '크리스마스 디데이 할인',
+  WEEKEND_DISCOUNT: '주말 할인',
+  WEEKDAY_DISCOUNT: '평일 할인',
+  SPECIAL_DISCOUNT: '특별 할인',
+  GIFT_EVENT: '증정 이벤트',
+  GIFT_CHAMPAGNE: '샴페인 1개',
+  GIFT_NONE: '없음',
 });
 
 const DATE = Object.freeze({
@@ -34,8 +34,8 @@ const DATE = Object.freeze({
 });
 
 const SPLIT_STRING = Object.freeze({
-  COMMA_SEPARATOR: ",",
-  DASH_SEPARATOR: "-",
+  COMMA_SEPARATOR: ',',
+  DASH_SEPARATOR: '-',
 });
 
 const NUMBER = Object.freeze({
@@ -60,18 +60,18 @@ const PRICE = Object.freeze({
 });
 
 const MENU = Object.freeze({
-  SOUP: "양송이수프",
-  TAPAS: "타파스",
-  CAESAR_SALAD: "시저샐러드",
-  T_BONE_STEAK: "티본스테이크",
-  BBQ_RIBS: "바비큐립",
-  SEAFOOD_PASTA: "해산물파스타",
-  CHRISTMAS_PASTA: "크리스마스파스타",
-  CHOCO_CAKE: "초코케이크",
-  ICE_CREAM: "아이스크림",
-  ZERO_COLA: "제로콜라",
-  RED_WINE: "레드와인",
-  CHAMPAGNE: "샴페인",
+  SOUP: '양송이수프',
+  TAPAS: '타파스',
+  CAESAR_SALAD: '시저샐러드',
+  T_BONE_STEAK: '티본스테이크',
+  BBQ_RIBS: '바비큐립',
+  SEAFOOD_PASTA: '해산물파스타',
+  CHRISTMAS_PASTA: '크리스마스파스타',
+  CHOCO_CAKE: '초코케이크',
+  ICE_CREAM: '아이스크림',
+  ZERO_COLA: '제로콜라',
+  RED_WINE: '레드와인',
+  CHAMPAGNE: '샴페인',
 });
 
 const EVENT_BEDGE_AMOUNT = Object.freeze({
@@ -81,9 +81,9 @@ const EVENT_BEDGE_AMOUNT = Object.freeze({
 });
 
 const EVENT_BEDGE = Object.freeze({
-  SANTA: "산타",
-  TREE: "트리",
-  STAR: "별",
+  SANTA: '산타',
+  TREE: '트리',
+  STAR: '별',
 });
 
 export {

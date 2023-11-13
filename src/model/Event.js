@@ -1,4 +1,4 @@
-import { EVENT_AMOUNT, EVENT_STRING } from "../utils/Constans";
+import { EVENT_AMOUNT, EVENT_STRING } from '../utils/Constans';
 
 class Event {
   constructor() {

@@ -1,5 +1,5 @@
-import Controller from "./controller/Controller";
-import { ERROR_MESSAGES } from "./utils/Messages";
+import Controller from './controller/Controller';
+import { ERROR_MESSAGES } from './utils/Messages';
 class App {
   async run() {
     try {

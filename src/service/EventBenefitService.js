@@ -1,6 +1,6 @@
-import Menu from "../model/Menu";
-import Event from "../model/Event";
-import { EVENT_AMOUNT, DATE_CONSTANTS, NUMBER, DATE } from "../utils/Constans";
+import Menu from '../model/Menu';
+import Event from '../model/Event';
+import { EVENT_AMOUNT, DATE_CONSTANTS, NUMBER, DATE } from '../utils/Constans';
 
 class EventBenefitService {
   #event;
@@ -71,6 +71,7 @@ class EventBenefitService {
     }
     return EVENT_AMOUNT.ZERO_AMOUNT;
   }
+
   #calculateBenefitDiscount(totalPrice) {
     if(totalPrice >= EVENT_AMOUNT.BENEFIT_DISCOUNT_THRESHOLD){
         return EVENT_AMOUNT.BENEFIT_DISCOUNT_AMOUNT;
