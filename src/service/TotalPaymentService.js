@@ -1,6 +1,7 @@
 class TotalPaymentService {
-  calculateTotalPayment(totalPrice, totalBenefits, giftMenu) {
-    const benefitDiscount = giftMenu ? 25000 : 0;
+  calculateTotalPayment(totalPrice, totalBenefits, totalEvents) {
+    const benefitDiscountPrice = totalEvents["증정 이벤트"];
+    const benefitDiscount = benefitDiscountPrice ? 25000 : 0;
     const totalPaymentPrice = totalPrice - totalBenefits + benefitDiscount;
     return totalPaymentPrice;
   }

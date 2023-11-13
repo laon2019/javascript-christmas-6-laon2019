@@ -8,13 +8,13 @@ class EventBenefitService {
     this.#event = new Event();
   }
 
-  checkEvents(menu, date, giftMenu) {
+  checkEvents(menu, date, totalPrice) {
     const christmasDiscount = this.#calculateChristmasDiscount(date);
     const isWeekEnd = this.#checkWeekEnd(date);
     const weekendDiscount = this.#calculateWeekendOrWeekdayDiscount(menu, isWeekEnd, Menu.getMainCourse());
     const weekdayDiscount = this.#calculateWeekendOrWeekdayDiscount(menu, !isWeekEnd, Menu.getDessert());
     const specialDiscount = this.#calculateSpecialDiscount(date);
-    const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
+    const benefitDiscount = this.#calculateBenefitDiscount(totalPrice);
     this.#updateEvent(christmasDiscount, weekendDiscount, weekdayDiscount, specialDiscount, benefitDiscount);
     const allEvent = this.#event.getAllEvents();
     const totalBenefitsSum = this.#calculateTotalBenefits([christmasDiscount, weekendDiscount, weekdayDiscount, specialDiscount, benefitDiscount]);
@@ -72,9 +72,9 @@ class EventBenefitService {
     }
     return 0;
   }
-  #calculateBenefitDiscount(giftMenu) {
-    if (giftMenu) {
-      return 25000;
+  #calculateBenefitDiscount(totalPrice) {
+    if(totalPrice >= 120000){
+        return 25000;
     }
     return 0;
   }

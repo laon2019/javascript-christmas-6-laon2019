@@ -23,9 +23,13 @@ const OutputView = {
     Console.print("<할인 전 총주문 금액>");
     Console.print(`${price.toLocaleString()}원`);
   },
-  printGiftMenu(gift) {
+  printGiftMenu(totalEvents) {
+    const benefitDiscountPrice = totalEvents["증정 이벤트"];
     Console.print("<증정 메뉴>");
-    Console.print(gift ? "샴페인 1개" : "없음");
+    if (benefitDiscountPrice === 25000) {
+      return Console.print("샴페인 1개");
+    } 
+    return Console.print("없음");
   },
   printTotalEvents(totalEvents) {
     Console.print("<혜택 내역>");

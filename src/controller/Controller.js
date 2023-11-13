@@ -4,7 +4,6 @@ import OutputView from "../view/OutputView";
 import OrderService from "../service/OrderService";
 import OrderValidation from "../service/OrderValidation";
 import TotalPriceService from "../service/TotalPriceService";
-import GiftMenuService from "../service/GiftMenuService";
 import ValidateBenefitService from "../service/ValidateBenefitService";
 import TotalPaymentService from "../service/TotalPaymentService";
 
@@ -14,7 +13,6 @@ class Controller {
   #orderService;
   #orderValidation;
   #totalPriceService;
-  #giftMenuService;
   #validateBenefitService;
   #totalPaymentService;
 
@@ -22,7 +20,6 @@ class Controller {
     this.#orderService = new OrderService();
     this.#orderValidation = new OrderValidation();
     this.#totalPriceService = new TotalPriceService();
-    this.#giftMenuService = new GiftMenuService();
     this.#validateBenefitService = new ValidateBenefitService();
     this.#totalPaymentService = new TotalPaymentService();
   }
@@ -64,12 +61,11 @@ class Controller {
       OutputView.printMenu(this.#menu);
       const totalPrice = this.#totalPriceService.calculateTotalPrice(this.#menu);
       OutputView.printTotalPrice(totalPrice);
-      const giftMenu = this.#giftMenuService.provideGift(totalPrice);
-      OutputView.printGiftMenu(giftMenu);
-      const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, giftMenu, totalPrice);
+      const [totalEvents, totalBenefits] = this.#validateBenefitService.applySpecialEvents(this.#menu, this.#date, totalPrice);
+      OutputView.printGiftMenu(totalEvents);
       OutputView.printTotalEvents(totalEvents);
       OutputView.printTotalBenefitsPrice(totalBenefits);
-      const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, giftMenu);
+      const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, totalEvents);
       OutputView.printTotalPaymentPrice(totalPaymentPrice);
       OutputView.printEventBadge(totalPaymentPrice);
     } catch (error) {
