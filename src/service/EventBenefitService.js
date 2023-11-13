@@ -11,11 +11,13 @@ class EventBenefitService {
     checkEvents(menu, date, giftMenu) {
         const christmasDiscount = this.#calculateChristmasDiscount(date);
         this.#event.setChristmasDiscount(christmasDiscount);
+
+        const isWeekEnd = this.#checkWeekEnd(date);
     
-        const weekendDiscount = this.#calculateWeekendDiscount(date, menu);
+        const weekendDiscount = this.#calculateWeekendDiscount(menu, isWeekEnd);
         this.#event.setWeekendDiscount(weekendDiscount);
     
-        const weekdayDiscount = this.#calculateWeekDayDiscount(date, menu);
+        const weekdayDiscount = this.#calculateWeekDayDiscount(menu, isWeekEnd);
         this.#event.setWeekdayDiscount(weekdayDiscount);
     
         const specialDiscount = this.#calculateSpecialDiscount(date);
@@ -42,6 +44,11 @@ class EventBenefitService {
     return totalBenefitsSum;
   }
 
+  #checkWeekEnd(date){
+    const weekend = ["1", "2", "8", "9", "15", "16", "22", "23", "29"];
+    return weekend.includes(date)
+  }
+
   #calculateChristmasDiscount(date) {
     const isChristmasEventDay = date >= 1 && date <= 25;
     if (isChristmasEventDay) {
@@ -51,9 +58,8 @@ class EventBenefitService {
     return 0;
   }
 
-  #calculateWeekendDiscount(date, menu) {
-    const weekend = ["1", "2", "8", "9", "15", "16", "22", "23", "29"];
-    if (weekend.includes(date)) {
+  #calculateWeekendDiscount(menu, isWeekEnd) {
+    if (isWeekEnd) {
       const dessertMenuItems = Menu.getDessert();
       const dessertCount = menu.reduce((count, [itemName, quantity]) => {
         if (dessertMenuItems.some((dessert) => dessert.name === itemName)) {
@@ -66,9 +72,8 @@ class EventBenefitService {
     return 0;
   }
 
-  #calculateWeekDayDiscount(date, menu){
-    const weekday = ["3", "4", "5", "6", "7", "10", "11", "12", "13", "14", "17", "18", "19", "20", "21", "24", "25", "26", "27", "28", "31"];
-    if (weekday.includes(date)) {
+  #calculateWeekDayDiscount(menu, isWeekEnd){
+   if (isWeekEnd) {
       const mainCourseMenuItems = Menu.getMainCourse();
       const mainCourseCount = menu.reduce((count, [itemName, quantity]) => {
           if (mainCourseMenuItems.some((mainCourse) => mainCourse.name === itemName)) {
