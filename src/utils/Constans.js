@@ -18,9 +18,14 @@ const DATE = Object.freeze({
   CHRISTMAS_EVENT_END_DAY: 25,
 });
 
+const SPLIT_STRING = Object.freeze({
+    COMMA_SEPARATOR: ",",
+    DASH_SEPARATOR: "-",
+})
+
 const NUMBER = Object.freeze({
   ZERO: 0,
   ONE: 1,
 });
 
-export { EVENT_AMOUNT, DATE_CONSTANTS, NUMBER, DATE };
+export { EVENT_AMOUNT, DATE_CONSTANTS, DATE, SPLIT_STRING, NUMBER };
