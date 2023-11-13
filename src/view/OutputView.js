@@ -67,12 +67,12 @@ const OutputView = {
     Console.print(`${price.toLocaleString()}원`);
     Console.print(VIEW_MESSAGES.NEW_LINE);
   },
-  printEventBadge(totalPaymentPrice) {
+  printEventBadge(totalBenefits) {
     Console.print(VIEW_MESSAGES.EVENT_BADGE_TITLE);
-    if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.SANTA_AMOUNT) Console.print(EVENT_BEDGE.SANTA);
-    if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.TREE_AMOUNT) Console.print(EVENT_BEDGE.TREE);
-    if (totalPaymentPrice >= EVENT_BEDGE_AMOUNT.STAR_AMOUNT) Console.print(EVENT_BEDGE.STAR);
-    if (totalPaymentPrice < EVENT_BEDGE_AMOUNT.STAR_AMOUNT) Console.print(EVENT_STRING.GIFT_NONE);
+    if (totalBenefits >= EVENT_BEDGE_AMOUNT.SANTA_AMOUNT) return Console.print(EVENT_BEDGE.SANTA);
+    if (totalBenefits >= EVENT_BEDGE_AMOUNT.TREE_AMOUNT) return Console.print(EVENT_BEDGE.TREE);
+    if (totalBenefits >= EVENT_BEDGE_AMOUNT.STAR_AMOUNT) return Console.print(EVENT_BEDGE.STAR);
+    if (totalBenefits < EVENT_BEDGE_AMOUNT.STAR_AMOUNT) return Console.print(EVENT_STRING.GIFT_NONE);
   },
 };
 export default OutputView;

@@ -82,7 +82,7 @@ class Controller {
     OutputView.printTotalEvents(totalEvents);
     OutputView.printTotalBenefitsPrice(totalBenefits);
     OutputView.printTotalPaymentPrice(totalPaymentPrice);
-    OutputView.printEventBadge(totalPaymentPrice);
+    OutputView.printEventBadge(totalBenefits);
   }
 }
 
