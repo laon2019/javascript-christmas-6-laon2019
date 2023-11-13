@@ -24,6 +24,8 @@ const EVENT_STRING = Object.freeze({
   WEEKDAY_DISCOUNT: "평일 할인",
   SPECIAL_DISCOUNT: "특별 할인",
   GIFT_EVENT: "증정 이벤트",
+  GIFT_CHAMPAGNE: "샴페인 1개",
+  GIFT_NONE: "없음",
 });
 
 const DATE = Object.freeze({
@@ -72,6 +74,18 @@ const MENU = Object.freeze({
   CHAMPAGNE: "샴페인",
 });
 
+const EVENT_BEDGE_AMOUNT = Object.freeze({
+  SANTA_AMOUNT: 20000,
+  TREE_AMOUNT: 10000,
+  STAR_AMOUNT: 5000,
+});
+
+const EVENT_BEDGE = Object.freeze({
+  SANTA: "산타",
+  TREE: "트리",
+  STAR: "별",
+});
+
 export {
   EVENT_AMOUNT,
   DATE_CONSTANTS,
@@ -82,4 +96,6 @@ export {
   NUMBER,
   MENU,
   PRICE,
+  EVENT_BEDGE_AMOUNT,
+  EVENT_BEDGE,
 };
