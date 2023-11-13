@@ -1,5 +1,6 @@
 import Menu from "../model/Menu";
 import Event from "../model/Event";
+import { EVENT_AMOUNT, DATE_CONSTANTS, NUMBER, DATE } from "../utils/Constans";
 
 class EventBenefitService {
   #event;
@@ -35,24 +36,23 @@ class EventBenefitService {
   }
 
   #checkWeekEnd(date) {
-    const weekend = ["1", "2", "8", "9", "15", "16", "22", "23", "29"];
-    return weekend.includes(date);
+    return DATE_CONSTANTS.WEEKEND_DAYS.includes(date);
   }
 
   #calculateChristmasDiscount(date) {
-    const isChristmasEventDay = date >= 1 && date <= 25;
+    const isChristmasEventDay = date >= DATE.CHRISTMAS_EVENT_START_DAY && date <= DATE.CHRISTMAS_EVENT_END_DAY;
     if (isChristmasEventDay) {
-      const christmasDiscount = 1000 + (date - 1) * 100;
+      const christmasDiscount = EVENT_AMOUNT.CHRISTMAS_DEFAULT_AMOUNT + (date - NUMBER.ONE) * EVENT_AMOUNT.CHRISTMAS_DAY_AMOUNT;
       return christmasDiscount;
     }
-    return 0;
+    return EVENT_AMOUNT.ZERO_AMOUNT;
   }
 
   #calculateWeekendOrWeekdayDiscount(menu, isWeekend, menuItems) {
     if (isWeekend) {
       return this.#calculateDiscount(menu, menuItems);
     }
-    return 0;
+    return EVENT_AMOUNT.ZERO_AMOUNT;
   }
 
   #calculateDiscount(menu, menuItems) {
@@ -61,22 +61,21 @@ class EventBenefitService {
         return count + quantity;
       }
       return count;
-    }, 0);
-    return count * 2023;
+    }, NUMBER.ZERO);
+    return count * EVENT_AMOUNT.WEEKEND_AMOUNT;
   }
 
   #calculateSpecialDiscount(date) {
-    const specialDay = ["3", "10", "17", "24", "25", "31"];
-    if (specialDay.includes(date)) {
-      return 1000;
+    if (DATE_CONSTANTS.SPECIAL_DAYS.includes(date)) {
+      return EVENT_AMOUNT.SPECIAL_EVENT_AMOUNT;
     }
-    return 0;
+    return EVENT_AMOUNT.ZERO_AMOUNT;
   }
   #calculateBenefitDiscount(totalPrice) {
-    if(totalPrice >= 120000){
-        return 25000;
+    if(totalPrice >= EVENT_AMOUNT.BENEFIT_DISCOUNT_THRESHOLD){
+        return EVENT_AMOUNT.BENEFIT_DISCOUNT_AMOUNT;
     }
-    return 0;
+    return EVENT_AMOUNT.ZERO_AMOUNT;
   }
 }
 export default EventBenefitService;
