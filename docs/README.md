@@ -43,22 +43,29 @@
 
 ### 파일 구조
 
-- view
-    - InputView
-    - OutputView
-- controller
-    - Controller
-- service
-    - DateService
-    - OrderService
-    - OrderAmountService
-    - GiftService
-    - BenefitService    
-    - Discount
-    - BadgeService
-- model
-    - DateModel
-    - MenuModel
-- repository
-    - Date
-    - Menu
+- 📦src
+- ┣ 📂controller
+- ┃ ┗ 📜Controller.js (뷰와 서비스 컨트롤러 파일)
+- ┣ 📂model
+- ┃ ┣ 📜Event.js (이벤트 정보 가지고 있는 파일)
+- ┃ ┣ 📜Menu.js (메뉴 정보 가지고 있는 파일)
+- ┃ ┗ 📜MenuItem.js (메뉴 아이템 생성을 위한 파일)
+- ┣ 📂repository
+- ┃ ┣ 📜DateRepository.js (날짜 정보 파일)
+- ┃ ┗ 📜MenuRepository.js (메뉴 정보 파일)
+- ┣ 📂service
+- ┃ ┣ 📜EventBenefitService.js (이벤트 할인 계산 파일)
+- ┃ ┣ 📜MenuSplitService.js (메뉴 문자열 분리 파일)
+- ┃ ┣ 📜OrderValidation.js (메뉴 주문 유효성 검사 파일)
+- ┃ ┣ 📜TotalPaymentService.js (할인 후 예상 결제 금액 계산 파일)
+- ┃ ┣ 📜TotalPriceService.js (할인 전 총주문 금액 계산 파일)
+- ┃ ┗ 📜ValidateBenefitService.js (이벤트 적용 유효성 검사 파일)
+- ┣ 📂utils
+- ┃ ┣ 📜Constans.js (상수 파일)
+- ┃ ┣ 📜Messages.js (메시지 파일)
+- ┃ ┗ 📜Validation.js (유효성 검사 파일)
+- ┣ 📂view
+- ┃ ┣ 📜InputView.js (입력 파일)
+- ┃ ┗ 📜OutputView.js (출력 파일)
+- ┣ 📜App.js
+- ┗ 📜index.js
