@@ -10,8 +10,8 @@ const EVENT_AMOUNT = Object.freeze({
 });
 
 const DATE_CONSTANTS = Object.freeze({
-  WEEKEND_DAYS: ['1', '2', '8', '9', '15', '16', '22', '23', '29'],
-  SPECIAL_DAYS: ['3', '10', '17', '24', '25', '31'],
+  WEEKEND_DAYS: ["1", "2", "8", "9", "15", "16", "22", "23", "29"],
+  SPECIAL_DAYS: ["3", "10", "17", "24", "25", "31"],
 });
 
 const EVENT_CONSTANTS = Object.freeze({
@@ -19,7 +19,11 @@ const EVENT_CONSTANTS = Object.freeze({
 });
 
 const EVENT_STRING = Object.freeze({
-  GIFT_EVENT: '증정 이벤트',
+  CHRISTMAS_DISCOUNT: "크리스마스 디데이 할인",
+  WEEKEND_DISCOUNT: "주말 할인",
+  WEEKDAY_DISCOUNT: "평일 할인",
+  SPECIAL_DISCOUNT: "특별 할인",
+  GIFT_EVENT: "증정 이벤트",
 });
 
 const DATE = Object.freeze({
@@ -28,8 +32,8 @@ const DATE = Object.freeze({
 });
 
 const SPLIT_STRING = Object.freeze({
-  COMMA_SEPARATOR: ',',
-  DASH_SEPARATOR: '-',
+  COMMA_SEPARATOR: ",",
+  DASH_SEPARATOR: "-",
 });
 
 const NUMBER = Object.freeze({

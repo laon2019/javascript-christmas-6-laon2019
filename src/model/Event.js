@@ -1,11 +1,12 @@
-// Event.js
+import { EVENT_AMOUNT, EVENT_STRING } from "../utils/Constans";
+
 class Event {
   constructor() {
-    this.christmasDiscount = 0;
-    this.weekendDiscount = 0;
-    this.weekdayDiscount = 0;
-    this.specialDiscount = 0;
-    this.benefitDiscount = 0;
+    this.christmasDiscount = EVENT_AMOUNT.ZERO_AMOUNT;
+    this.weekendDiscount = EVENT_AMOUNT.ZERO_AMOUNT;
+    this.weekdayDiscount = EVENT_AMOUNT.ZERO_AMOUNT;
+    this.specialDiscount = EVENT_AMOUNT.ZERO_AMOUNT;
+    this.benefitDiscount = EVENT_AMOUNT.ZERO_AMOUNT;
   }
 
   setChristmasDiscount(value) {
@@ -30,11 +31,11 @@ class Event {
 
   getAllEvents() {
     return {
-      "크리스마스 디데이 할인": this.christmasDiscount,
-      "주말 할인": this.weekendDiscount,
-      "평일 할인": this.weekdayDiscount,
-      "특별 할인": this.specialDiscount,
-      "증정 이벤트": this.benefitDiscount,
+      [EVENT_STRING.CHRISTMAS_DISCOUNT]: this.christmasDiscount,
+      [EVENT_STRING.WEEKEND_DISCOUNT]: this.weekendDiscount,
+      [EVENT_STRING.WEEKDAY_DISCOUNT]: this.weekdayDiscount,
+      [EVENT_STRING.SPECIAL_DISCOUNT]: this.specialDiscount,
+      [EVENT_STRING.GIFT_EVENT]: this.benefitDiscount,
     };
   }
 }
