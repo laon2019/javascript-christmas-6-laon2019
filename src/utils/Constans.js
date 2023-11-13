@@ -42,6 +42,7 @@ const NUMBER = Object.freeze({
   ZERO: 0,
   ONE: 1,
   TEN: 10,
+  THIRTY_ONE: 31,
 });
 
 const PRICE = Object.freeze({
