@@ -1,37 +1,41 @@
 import Menu from "../model/Menu";
+import Event from "../model/Event";
 
 class EventBenefitService {
-  checkEvents(menu, date, giftMenu) {
-    const totalEvents = [];
-    const totalBenefits = [];
-    const christmasDiscount = this.#calculateChristmasDiscount(date);
-    if (christmasDiscount) {
-      totalEvents.push(`크리스마스 디데이 할인: -${christmasDiscount.toLocaleString()}원`);
-      totalBenefits.push(christmasDiscount);
+    #event
+
+    constructor() {
+        this.#event = new Event();
     }
-    const weekendDiscount = this.#calculateWeekendDiscount(date, menu);
-    if (weekendDiscount){
-        totalEvents.push(`주말 할인: -${weekendDiscount.toLocaleString()}원`)
-        totalBenefits.push(weekendDiscount);
-    }
-    const weekdayDiscount = this.#calculateWeekDayDiscount(date, menu);
-    if (weekdayDiscount){
-        totalEvents.push(`평일 할인: -${weekdayDiscount.toLocaleString()}원`)
-        totalBenefits.push(weekdayDiscount);
-    }
-    const specialDiscount = this.#calculateSpcialDiscount(date);
-    if (specialDiscount){
-        totalEvents.push(`특별 할인: -${specialDiscount.toLocaleString()}원`)
-        totalBenefits.push(specialDiscount);
-    }
-    const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
-    if (benefitDiscount){
-        totalEvents.push(`증정 이벤트: -${benefitDiscount.toLocaleString()}원`);
-        totalBenefits.push(benefitDiscount);
-    }
-    const totalBenefitsSum = this.#calculateTotalBenefits(totalBenefits);
-    return [totalEvents, totalBenefitsSum];
-  }
+
+    checkEvents(menu, date, giftMenu) {
+        const christmasDiscount = this.#calculateChristmasDiscount(date);
+        this.#event.setChristmasDiscount(christmasDiscount);
+    
+        const weekendDiscount = this.#calculateWeekendDiscount(date, menu);
+        this.#event.setWeekendDiscount(weekendDiscount);
+    
+        const weekdayDiscount = this.#calculateWeekDayDiscount(date, menu);
+        this.#event.setWeekdayDiscount(weekdayDiscount);
+    
+        const specialDiscount = this.#calculateSpecialDiscount(date);
+        this.#event.setSpecialDiscount(specialDiscount);
+    
+        const benefitDiscount = this.#calculateBenefitDiscount(giftMenu);
+        this.#event.setBenefitDiscount(benefitDiscount);
+
+        const allEvent = this.#event.getAllEvents();
+    
+        const totalBenefitsSum = this.#calculateTotalBenefits([
+          christmasDiscount,
+          weekendDiscount,
+          weekdayDiscount,
+          specialDiscount,
+          benefitDiscount,
+        ]);
+    
+        return [allEvent, totalBenefitsSum];
+      }
 
   #calculateTotalBenefits(benefits) {
     const totalBenefitsSum = benefits.reduce((acc, value) => acc + value, 0);
@@ -59,6 +63,7 @@ class EventBenefitService {
       }, 0);
       return dessertCount * 2023;
     }
+    return 0;
   }
 
   #calculateWeekDayDiscount(date, menu){
@@ -73,8 +78,10 @@ class EventBenefitService {
         }, 0);
       return mainCourseCount * 2023;
     }
+    return 0;
   }
-  #calculateSpcialDiscount(date){
+
+  #calculateSpecialDiscount(date){
     const specialDay = ["3", "10", "17", "24", "25", "31"];
     if (specialDay.includes(date)) {
         return 1000;

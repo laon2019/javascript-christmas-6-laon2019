@@ -12,7 +12,7 @@ class ValidateBenefitService {
         if(this.validateOrder(menu, totalPrice)){
             return this.#eventBenefitService.checkEvents(menu, date, giftMenu);
         }
-        return [["없음"], 0];
+        return [false, 0];
     }
     
     validateOrder(menu, totalPrice){
