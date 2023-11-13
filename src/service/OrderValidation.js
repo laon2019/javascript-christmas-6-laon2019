@@ -1,5 +1,6 @@
 import Menu from "../model/Menu";
 import { ERROR_MENU_MESSAGES } from "../utils/Messages";
+import { NUMBER, EVENT_CONSTANTS } from "../utils/Constans";
 
 class OrderValidation {
   validateOrder(menuItems) {
@@ -13,9 +14,9 @@ class OrderValidation {
   #validateMaxOrderCount(menuItems) {
     const totalQuantity = menuItems.reduce(
       (sum, [, quantity]) => sum + quantity,
-      0
+      NUMBER.ZERO
     );
-    if (totalQuantity > 20) {
+    if (totalQuantity > EVENT_CONSTANTS.MAX_MENU_QUANTITY) {
       throw new Error(ERROR_MENU_MESSAGES.MAX_ORDER_COUNT);
     }
   }
@@ -24,7 +25,7 @@ class OrderValidation {
     const allMenuItems = Menu.getAllMenuItems();
     const allMenuNames = allMenuItems.map((item) => item.name);
     menuItems.forEach((menu) => {
-      const itemName = menu[0];
+      const itemName = menu[NUMBER.ZERO];
       if (!allMenuNames.includes(itemName)) {
         throw new Error(ERROR_MENU_MESSAGES.INVALID_MENU);
       }
@@ -33,7 +34,7 @@ class OrderValidation {
 
   #validateQuantity(menuItems) {
     menuItems.forEach((menu) => {
-      if (menu[1] < 1) {
+      if (menu[NUMBER.ONE] < NUMBER.ONE) {
         throw new Error(ERROR_MENU_MESSAGES.INVALID_QUANTITY);
       }
     });
@@ -41,7 +42,7 @@ class OrderValidation {
 
   #validateNumber(menuItems) {
     menuItems.forEach((menu) => {
-      if (isNaN(Number(menu[1]))) {
+      if (isNaN(Number(menu[NUMBER.ONE]))) {
         throw new Error(ERROR_MENU_MESSAGES.INVALID_NUMBER);
       }
     });
@@ -50,7 +51,7 @@ class OrderValidation {
   #validateDuplicate(menuItems) {
     const menuNamesSet = new Set();
     menuItems.forEach((menu) => {
-      menuNamesSet.add(menu[0]);
+      menuNamesSet.add(menu[NUMBER.ZERO]);
     });
     if (menuItems.length !== menuNamesSet.size) {
       throw new Error(ERROR_MENU_MESSAGES.DUPLICATE_MENU);

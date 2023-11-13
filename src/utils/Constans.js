@@ -13,19 +13,23 @@ const DATE_CONSTANTS = Object.freeze({
   SPECIAL_DAYS: ["3", "10", "17", "24", "25", "31"],
 });
 
+const EVENT_CONSTANTS = Object.freeze({
+  MAX_MENU_QUANTITY: 20,
+});
+
 const DATE = Object.freeze({
   CHRISTMAS_EVENT_START_DAY: 1,
   CHRISTMAS_EVENT_END_DAY: 25,
 });
 
 const SPLIT_STRING = Object.freeze({
-    COMMA_SEPARATOR: ",",
-    DASH_SEPARATOR: "-",
-})
+  COMMA_SEPARATOR: ",",
+  DASH_SEPARATOR: "-",
+});
 
 const NUMBER = Object.freeze({
   ZERO: 0,
   ONE: 1,
 });
 
-export { EVENT_AMOUNT, DATE_CONSTANTS, DATE, SPLIT_STRING, NUMBER };
+export { EVENT_AMOUNT, DATE_CONSTANTS, EVENT_CONSTANTS, DATE, SPLIT_STRING, NUMBER };
