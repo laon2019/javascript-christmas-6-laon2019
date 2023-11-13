@@ -26,6 +26,17 @@ describe("이벤트 테스트", () => {
         expect(totalBenefitsSum).toBe(4046);
     });
 
-    
+    test("평일 이벤트 테스트", () => {
+        const eventBenefitService = new EventBenefitService();
+        const menu = [["초코케이크", 2], ["타파스", 1]]; 
+        const date = "28"; 
+        const giftMenu = 0; 
+  
+        const [allEvent, totalBenefitsSum] = eventBenefitService.checkEvents(menu, date, giftMenu);
+  
+        expect(allEvent["평일 할인"]).toBe(4046);
+        expect(totalBenefitsSum).toBe(4046);
+    });
+
   });
 });
