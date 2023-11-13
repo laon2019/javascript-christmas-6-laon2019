@@ -38,5 +38,16 @@ describe("이벤트 테스트", () => {
         expect(totalBenefitsSum).toBe(4046);
     });
 
+    test("특별 이벤트 테스트", () => {
+        const eventBenefitService = new EventBenefitService();
+        const menu = [["양송이수프", 2], ["타파스", 1]]; 
+        const date = "31"; 
+        const giftMenu = 0; 
+  
+        const [allEvent, totalBenefitsSum] = eventBenefitService.checkEvents(menu, date, giftMenu);
+  
+        expect(allEvent["특별 할인"]).toBe(1000);
+        expect(totalBenefitsSum).toBe(1000);
+    });
   });
 });
