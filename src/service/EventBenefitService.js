@@ -14,10 +14,10 @@ class EventBenefitService {
 
         const isWeekEnd = this.#checkWeekEnd(date);
     
-        const weekendDiscount = this.#calculateWeekendDiscount(menu, isWeekEnd);
+        const weekendDiscount = this.#calculateWeekendOrWeekdayDiscount(menu, isWeekEnd, Menu.getMainCourse());
         this.#event.setWeekendDiscount(weekendDiscount);
-    
-        const weekdayDiscount = this.#calculateWeekDayDiscount(menu, isWeekEnd);
+
+        const weekdayDiscount = this.#calculateWeekendOrWeekdayDiscount(menu, !isWeekEnd, Menu.getDessert());
         this.#event.setWeekdayDiscount(weekdayDiscount);
     
         const specialDiscount = this.#calculateSpecialDiscount(date);
@@ -58,32 +58,17 @@ class EventBenefitService {
     return 0;
   }
 
-  #calculateWeekendDiscount(menu, isWeekEnd) {
+  #calculateWeekendOrWeekdayDiscount(menu, isWeekEnd, menuItems) {
     if (isWeekEnd) {
-        const mainCourseMenuItems = Menu.getMainCourse();
-        const mainCourseCount = menu.reduce((count, [itemName, quantity]) => {
-            if (mainCourseMenuItems.some((mainCourse) => mainCourse.name === itemName)) {
-                return count + quantity;
-              }
-              return count;
-          }, 0);
-        return mainCourseCount * 2023;
-      }
-      return 0;
-  }
-
-  #calculateWeekDayDiscount(menu, isWeekEnd){
-    if (!isWeekEnd) {
-        const dessertMenuItems = Menu.getDessert();
-        const dessertCount = menu.reduce((count, [itemName, quantity]) => {
-          if (dessertMenuItems.some((dessert) => dessert.name === itemName)) {
-            return count + quantity;
-          }
-          return count;
-        }, 0);
-        return dessertCount * 2023;
-      }
-      return 0;
+      const count = menu.reduce((count, [itemName, quantity]) => {
+        if (menuItems.some((item) => item.name === itemName)) {
+          return count + quantity;
+        }
+        return count;
+      }, 0);
+      return count * 2023;
+    }
+    return 0;
   }
 
   #calculateSpecialDiscount(date){
