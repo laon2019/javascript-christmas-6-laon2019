@@ -1,6 +1,11 @@
-import { Console } from '@woowacourse/mission-utils';
-import { GAME_MESSAGES, VIEW_MESSAGES } from '../utils/Messages';
-import { EVENT_AMOUNT, EVENT_STRING, EVENT_BEDGE_AMOUNT, EVENT_BEDGE } from '../utils/Constans';
+import { Console } from "@woowacourse/mission-utils";
+import { GAME_MESSAGES, VIEW_MESSAGES } from "../utils/Messages";
+import {
+  EVENT_AMOUNT,
+  EVENT_STRING,
+  EVENT_BEDGE_AMOUNT,
+  EVENT_BEDGE,
+} from "../utils/Constans";
 
 const OutputView = {
   print(message) {
@@ -40,17 +45,19 @@ const OutputView = {
   },
   printTotalEvents(totalEvents) {
     Console.print(VIEW_MESSAGES.BENEFITS_TITLE);
-    if (!totalEvents) Console.print(EVENT_STRING.GIFT_NONE);
-    if (totalEvents) {
-      Object.entries(totalEvents).forEach(([event, discount]) => {
-        if (discount > EVENT_AMOUNT.ZERO_AMOUNT) {
-          const formattedDiscount = discount.toLocaleString();
-          const formattedEvent = `${event}: -${formattedDiscount}원`;
-          Console.print(formattedEvent);
-        }
-      });
+    if (!totalEvents) {
+      Console.print(EVENT_STRING.GIFT_NONE);
+      Console.print(VIEW_MESSAGES.NEW_LINE);
+      return;
     }
-    Console.print(VIEW_MESSAGES.NEW_LINE);
+    Object.entries(totalEvents).forEach(([event, discount]) => {
+      if (discount > EVENT_AMOUNT.ZERO_AMOUNT) {
+        const formattedDiscount = discount.toLocaleString();
+        const formattedEvent = `${event}: -${formattedDiscount}원`;
+        Console.print(formattedEvent);
+        Console.print(VIEW_MESSAGES.NEW_LINE);
+      }
+    });
   },
   printTotalBenefitsPrice(price) {
     Console.print(VIEW_MESSAGES.TOTAL_BENEFITS_PRICE_TITLE);
@@ -69,10 +76,14 @@ const OutputView = {
   },
   printEventBadge(totalBenefits) {
     Console.print(VIEW_MESSAGES.EVENT_BADGE_TITLE);
-    if (totalBenefits >= EVENT_BEDGE_AMOUNT.SANTA_AMOUNT) return Console.print(EVENT_BEDGE.SANTA);
-    if (totalBenefits >= EVENT_BEDGE_AMOUNT.TREE_AMOUNT) return Console.print(EVENT_BEDGE.TREE);
-    if (totalBenefits >= EVENT_BEDGE_AMOUNT.STAR_AMOUNT) return Console.print(EVENT_BEDGE.STAR);
-    if (totalBenefits < EVENT_BEDGE_AMOUNT.STAR_AMOUNT) return Console.print(EVENT_STRING.GIFT_NONE);
+    if (totalBenefits >= EVENT_BEDGE_AMOUNT.SANTA_AMOUNT)
+      return Console.print(EVENT_BEDGE.SANTA);
+    if (totalBenefits >= EVENT_BEDGE_AMOUNT.TREE_AMOUNT)
+      return Console.print(EVENT_BEDGE.TREE);
+    if (totalBenefits >= EVENT_BEDGE_AMOUNT.STAR_AMOUNT)
+      return Console.print(EVENT_BEDGE.STAR);
+    if (totalBenefits < EVENT_BEDGE_AMOUNT.STAR_AMOUNT)
+      return Console.print(EVENT_STRING.GIFT_NONE);
   },
 };
 export default OutputView;
