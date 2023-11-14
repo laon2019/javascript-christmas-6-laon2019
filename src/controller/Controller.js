@@ -1,13 +1,13 @@
-import InputView from '../view/InputView';
-import { ERROR_MESSAGES } from '../utils/Messages';
-import OutputView from '../view/OutputView';
-import MenuSplitService from '../service/MenuSplitService';
-import OrderValidation from '../service/OrderValidation';
-import TotalPriceService from '../service/TotalPriceService';
-import ValidateBenefitService from '../service/ValidateBenefitService';
-import TotalPaymentService from '../service/TotalPaymentService';
-import MenuRepository from '../repository/MenuRepository';
-import DateRepository from '../repository/DateRepository';
+import InputView from "../view/InputView";
+import { ERROR_MESSAGES } from "../utils/Messages";
+import OutputView from "../view/OutputView";
+import MenuSplitService from "../service/MenuSplitService";
+import OrderValidation from "../service/OrderValidation";
+import TotalPriceService from "../service/TotalPriceService";
+import ValidateBenefitService from "../service/ValidateBenefitService";
+import TotalPaymentService from "../service/TotalPaymentService";
+import MenuRepository from "../repository/MenuRepository";
+import DateRepository from "../repository/DateRepository";
 
 class Controller {
   #menuRepository;
@@ -33,6 +33,7 @@ class Controller {
       OutputView.printHello();
       await this.#inputDate();
       await this.#inputMenu();
+      OutputView.printEvent(this.#dateRepository.getDate());
       this.#processOrder();
     } catch (error) {
       OutputView.print(ERROR_MESSAGES.DEFAULT_ERROR);
@@ -75,7 +76,6 @@ class Controller {
 
   async #printOrderSummary(totalPrice, totalEvents, totalBenefits) {
     const totalPaymentPrice = this.#totalPaymentService.calculateTotalPayment(totalPrice, totalBenefits, totalEvents);
-
     OutputView.printMenu(this.#menuRepository.getMenu());
     OutputView.printTotalPrice(totalPrice);
     OutputView.printGiftMenu(totalEvents);
