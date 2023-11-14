@@ -1,11 +1,11 @@
-import { Console } from "@woowacourse/mission-utils";
-import { GAME_MESSAGES, VIEW_MESSAGES } from "../utils/Messages";
+import { Console } from '@woowacourse/mission-utils';
+import { GAME_MESSAGES, VIEW_MESSAGES } from '../utils/Messages';
 import {
   EVENT_AMOUNT,
   EVENT_STRING,
   EVENT_BEDGE_AMOUNT,
   EVENT_BEDGE,
-} from "../utils/Constans";
+} from '../utils/Constans';
 
 const OutputView = {
   print(message) {
