@@ -1,4 +1,34 @@
+### 파일 구조
+
+- 📦src
+- ┣ 📂controller
+- ┃ ┗ 📜Controller.js (뷰와 서비스 컨트롤러 파일)
+- ┣ 📂model
+- ┃ ┣ 📜Event.js (이벤트 정보 가지고 있는 파일)
+- ┃ ┣ 📜Menu.js (메뉴 정보 가지고 있는 파일)
+- ┃ ┗ 📜MenuItem.js (메뉴 아이템 생성을 위한 파일)
+- ┣ 📂repository
+- ┃ ┣ 📜DateRepository.js (날짜 정보 파일)
+- ┃ ┗ 📜MenuRepository.js (메뉴 정보 파일)
+- ┣ 📂service
+- ┃ ┣ 📜EventBenefitService.js (이벤트 할인 계산 파일)
+- ┃ ┣ 📜MenuSplitService.js (메뉴 문자열 분리 파일)
+- ┃ ┣ 📜OrderValidation.js (메뉴 주문 유효성 검사 파일)
+- ┃ ┣ 📜TotalPaymentService.js (할인 후 예상 결제 금액 계산 파일)
+- ┃ ┣ 📜TotalPriceService.js (할인 전 총주문 금액 계산 파일)
+- ┃ ┗ 📜ValidateBenefitService.js (이벤트 적용 유효성 검사 파일)
+- ┣ 📂utils
+- ┃ ┣ 📜Constans.js (상수 파일)
+- ┃ ┣ 📜Messages.js (메시지 파일)
+- ┃ ┗ 📜Validation.js (유효성 검사 파일)
+- ┣ 📂view
+- ┃ ┣ 📜InputView.js (입력 파일)
+- ┃ ┗ 📜OutputView.js (출력 파일)
+- ┣ 📜App.js
+- ┗ 📜index.js
+
 ### 기능목록
+
 - 입력 : 식당 방문 날짜 입력 받기
 - 입력 : 주문할 메뉴와 개수 입력 받기
 - 출력 : 이벤트 혜택 미리 보기 출력
@@ -30,6 +60,7 @@
     - 5천 원 이상 : 별
     - 1만 원 이상 : 트리
     - 2만 원 이상 : 산타
+    
 ### 예외 상황
 
 - 총주문 금액 10,000원 이상부터 이벤트 적용
@@ -40,32 +71,3 @@
 - 메뉴의 개수는 1 이상의 숫자만 입력되도록 한다. 이외의 입력값은 "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 출력
 - 메뉴 형식이 예시와 다른 경우 "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 출력
 - 중복 메뉴를 입력한 경우 "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."출력
-
-### 파일 구조
-
-- 📦src
-- ┣ 📂controller
-- ┃ ┗ 📜Controller.js (뷰와 서비스 컨트롤러 파일)
-- ┣ 📂model
-- ┃ ┣ 📜Event.js (이벤트 정보 가지고 있는 파일)
-- ┃ ┣ 📜Menu.js (메뉴 정보 가지고 있는 파일)
-- ┃ ┗ 📜MenuItem.js (메뉴 아이템 생성을 위한 파일)
-- ┣ 📂repository
-- ┃ ┣ 📜DateRepository.js (날짜 정보 파일)
-- ┃ ┗ 📜MenuRepository.js (메뉴 정보 파일)
-- ┣ 📂service
-- ┃ ┣ 📜EventBenefitService.js (이벤트 할인 계산 파일)
-- ┃ ┣ 📜MenuSplitService.js (메뉴 문자열 분리 파일)
-- ┃ ┣ 📜OrderValidation.js (메뉴 주문 유효성 검사 파일)
-- ┃ ┣ 📜TotalPaymentService.js (할인 후 예상 결제 금액 계산 파일)
-- ┃ ┣ 📜TotalPriceService.js (할인 전 총주문 금액 계산 파일)
-- ┃ ┗ 📜ValidateBenefitService.js (이벤트 적용 유효성 검사 파일)
-- ┣ 📂utils
-- ┃ ┣ 📜Constans.js (상수 파일)
-- ┃ ┣ 📜Messages.js (메시지 파일)
-- ┃ ┗ 📜Validation.js (유효성 검사 파일)
-- ┣ 📂view
-- ┃ ┣ 📜InputView.js (입력 파일)
-- ┃ ┗ 📜OutputView.js (출력 파일)
-- ┣ 📜App.js
-- ┗ 📜index.js
