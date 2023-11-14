@@ -1,4 +1,4 @@
-import { NUMBER } from "./Constans";
+import { NUMBER } from './Constans';
 
 class DateValidation {
   static validation(number) {
